@@ -143,6 +143,25 @@
   }
   #yt-player{width:100%; height:100%;}
 
+  .tap-overlay{
+    position:absolute; inset:0;
+    background:rgba(0,0,0,.55);
+    display:none; align-items:center; justify-content:center;
+    cursor:pointer; z-index:5;
+  }
+  .tap-overlay.show{display:flex;}
+  .tap-overlay .play-circle{
+    width:64px; height:64px; border-radius:50%;
+    background:var(--violet); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-size:24px; padding-left:4px;
+    box-shadow:0 6px 24px rgba(124,92,255,.45);
+  }
+  .tap-overlay .play-label{
+    position:absolute; bottom:14px; left:0; right:0; text-align:center;
+    font-size:12px; color:var(--text); font-family:'Inter', sans-serif;
+  }
+
   .now-playing{
     display:flex; align-items:center; gap:12px; margin-bottom:16px;
   }
@@ -250,7 +269,13 @@
 
   <!-- PLAYER -->
   <div class="card" id="player-card" style="display:none;">
-    <div class="player-shell"><div id="yt-player"></div></div>
+    <div class="player-shell">
+      <div id="yt-player"></div>
+      <div class="tap-overlay" id="tap-overlay">
+        <div class="play-circle">▶</div>
+        <div class="play-label">Başlatmak için dokun</div>
+      </div>
+    </div>
     <div class="now-playing">
       <div class="eq paused" id="eq"><span></span><span></span><span></span><span></span></div>
       <div class="np-text">
@@ -369,6 +394,9 @@ function onPlayerStateChange(e){
   if(e.data === YT.PlayerState.ENDED){
     goForward();
   }
+  if(e.data === YT.PlayerState.PLAYING || e.data === YT.PlayerState.BUFFERING){
+    hideTapOverlay();
+  }
   if(e.data === YT.PlayerState.PLAYING){
     isPaused = false;
     el('eq').classList.remove('paused');
@@ -380,6 +408,14 @@ function onPlayerStateChange(e){
     el('pause-btn').textContent = "Devam Et";
   }
 }
+
+function showTapOverlay(){ el('tap-overlay').classList.add('show'); }
+function hideTapOverlay(){ el('tap-overlay').classList.remove('show'); }
+
+el('tap-overlay').addEventListener('click', () => {
+  if(player && playerReady){ player.playVideo(); }
+  hideTapOverlay();
+});
 
 // ---- YouTube arama ----
 async function searchYouTube(query){
@@ -467,6 +503,7 @@ function pushToHistory(entry){
 function playCurrent(){
   const entry = historyStack[currentIndex];
   if(!entry) return;
+  showTapOverlay();
   if(playerReady){ player.loadVideoById(entry.videoId); }
   else { pendingVideoId = entry.videoId; }
   el('np-title').textContent = entry.track;
