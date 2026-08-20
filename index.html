@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Akış — YouTube Radyo</title>
 
-<!-- PWA: ana ekrana eklenebilir, uygulama gibi açılır -->
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0B0E13">
 <meta name="mobile-web-app-capable" content="yes">
@@ -19,15 +18,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#0B0E13;
-    --ink-2:#12161F;
-    --card:#171C27;
-    --line:#252B38;
-    --text:#EDEDF2;
-    --muted:#8A8F9C;
-    --violet:#7C5CFF;
-    --amber:#FFB86B;
-    --rose:#FF6B8B;
+    --ink:#0B0E13; --ink-2:#12161F; --card:#171C27; --line:#252B38;
+    --text:#EDEDF2; --muted:#8A8F9C; --violet:#7C5CFF; --amber:#FFB86B; --rose:#FF6B8B;
     --radius:14px;
   }
   *{box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent;}
@@ -36,87 +28,20 @@
       radial-gradient(1200px 600px at 15% -10%, rgba(124,92,255,0.10), transparent),
       radial-gradient(900px 500px at 100% 0%, rgba(255,184,107,0.06), transparent),
       var(--ink);
-    color:var(--text);
-    font-family:'Inter', sans-serif;
-    min-height:100vh;
-    padding:24px 16px 60px;
+    color:var(--text); font-family:'Inter', sans-serif; min-height:100vh; padding:24px 16px 60px;
   }
   .wrap{max-width:520px; margin:0 auto;}
-
-  .eyebrow{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:11px;
-    letter-spacing:0.14em;
-    text-transform:uppercase;
-    color:var(--violet);
-    margin-bottom:6px;
-  }
-  h1{
-    font-family:'Space Grotesk', sans-serif;
-    font-weight:700;
-    font-size:28px;
-    letter-spacing:-0.01em;
-    margin-bottom:4px;
-  }
+  .eyebrow{font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--violet); margin-bottom:6px;}
+  h1{font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:28px; letter-spacing:-0.01em; margin-bottom:4px;}
   .sub{color:var(--muted); font-size:13.5px; margin-bottom:28px;}
-
-  .card{
-    background:var(--card);
-    border:1px solid var(--line);
-    border-radius:var(--radius);
-    padding:18px;
-    margin-bottom:16px;
-  }
-  .card h2{
-    font-family:'Space Grotesk', sans-serif;
-    font-size:14px;
-    font-weight:600;
-    color:var(--muted);
-    text-transform:uppercase;
-    letter-spacing:0.06em;
-    margin-bottom:14px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-  }
-
-  label{
-    display:block;
-    font-size:12px;
-    color:var(--muted);
-    margin-bottom:6px;
-    font-weight:500;
-  }
-  input[type=text]{
-    width:100%;
-    background:var(--ink-2);
-    border:1px solid var(--line);
-    border-radius:9px;
-    padding:12px 12px;
-    color:var(--text);
-    font-size:16px;
-    font-family:'Inter', sans-serif;
-    margin-bottom:12px;
-    outline:none;
-    transition:border-color .15s;
-  }
+  .card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:18px; margin-bottom:16px;}
+  .card h2{font-family:'Space Grotesk', sans-serif; font-size:14px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:14px; display:flex; align-items:center; justify-content:space-between;}
+  label{display:block; font-size:12px; color:var(--muted); margin-bottom:6px; font-weight:500;}
+  input[type=text]{width:100%; background:var(--ink-2); border:1px solid var(--line); border-radius:9px; padding:12px; color:var(--text); font-size:16px; font-family:'Inter', sans-serif; margin-bottom:12px; outline:none; transition:border-color .15s;}
   input[type=text]:focus{border-color:var(--violet);}
-
   .row{display:flex; gap:10px;}
   .row > div{flex:1;}
-
-  button{
-    font-family:'Space Grotesk', sans-serif;
-    font-weight:600;
-    font-size:14px;
-    border:none;
-    border-radius:9px;
-    padding:12px 14px;
-    cursor:pointer;
-    transition:transform .1s, opacity .15s;
-    -webkit-user-select:none;
-    user-select:none;
-  }
+  button{font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:14px; border:none; border-radius:9px; padding:12px 14px; cursor:pointer; transition:transform .1s, opacity .15s; -webkit-user-select:none; user-select:none;}
   button:active{transform:scale(0.96);}
   button:disabled{opacity:.4; cursor:not-allowed;}
   .btn-primary{background:var(--violet); color:#fff; width:100%;}
@@ -124,104 +49,69 @@
   .btn-ghost{background:transparent; color:var(--muted); border:1px solid var(--line);}
   .btn-ghost:hover{color:var(--text); border-color:var(--muted);}
   .btn-ghost.active{color:var(--rose); border-color:rgba(255,107,139,.4);}
-
-  .icon-btn{
-    background:transparent; border:1px solid var(--line); color:var(--muted);
-    width:38px; height:38px; border-radius:9px; flex:none;
-    display:flex; align-items:center; justify-content:center; font-size:17px; padding:0;
-  }
+  .btn-sm{padding:7px 12px; font-size:12px;}
+  .icon-btn{background:transparent; border:1px solid var(--line); color:var(--muted); width:38px; height:38px; border-radius:9px; flex:none; display:flex; align-items:center; justify-content:center; font-size:17px; padding:0;}
   .icon-btn.fav-on{color:var(--rose); border-color:rgba(255,107,139,.4);}
 
-  .player-shell{
-    position:relative;
-    border-radius:var(--radius);
-    overflow:hidden;
-    background:#000;
-    aspect-ratio:16/9;
-    margin-bottom:14px;
-    border:1px solid var(--line);
-  }
+  .player-shell{position:relative; border-radius:var(--radius); overflow:hidden; background:#000; aspect-ratio:16/9; margin-bottom:14px; border:1px solid var(--line);}
   #yt-player{width:100%; height:100%;}
-
-  .tap-overlay{
-    position:absolute; inset:0;
-    background:rgba(0,0,0,.55);
-    display:none; align-items:center; justify-content:center;
-    cursor:pointer; z-index:5;
-  }
+  .tap-overlay{position:absolute; inset:0; background:rgba(0,0,0,.55); display:none; align-items:center; justify-content:center; cursor:pointer; z-index:5;}
   .tap-overlay.show{display:flex;}
-  .tap-overlay .play-circle{
-    width:64px; height:64px; border-radius:50%;
-    background:var(--violet); color:#fff;
-    display:flex; align-items:center; justify-content:center;
-    font-size:24px; padding-left:4px;
-    box-shadow:0 6px 24px rgba(124,92,255,.45);
-  }
-  .tap-overlay .play-label{
-    position:absolute; bottom:14px; left:0; right:0; text-align:center;
-    font-size:12px; color:var(--text); font-family:'Inter', sans-serif;
-  }
+  .tap-overlay .play-circle{width:64px; height:64px; border-radius:50%; background:var(--violet); color:#fff; display:flex; align-items:center; justify-content:center; font-size:24px; padding-left:4px; box-shadow:0 6px 24px rgba(124,92,255,.45);}
+  .tap-overlay .play-label{position:absolute; bottom:14px; left:0; right:0; text-align:center; font-size:12px; color:var(--text); font-family:'Inter', sans-serif;}
 
-  .now-playing{
-    display:flex; align-items:center; gap:12px; margin-bottom:16px;
-  }
+  .now-playing{display:flex; align-items:center; gap:12px; margin-bottom:16px;}
   .eq{display:flex; align-items:flex-end; gap:3px; height:22px; flex-shrink:0;}
-  .eq span{
-    width:3px; background:var(--amber); border-radius:2px;
-    animation:bounce 1s ease-in-out infinite;
-  }
+  .eq span{width:3px; background:var(--amber); border-radius:2px; animation:bounce 1s ease-in-out infinite;}
   .eq span:nth-child(1){height:40%; animation-delay:0s;}
   .eq span:nth-child(2){height:100%; animation-delay:.15s;}
   .eq span:nth-child(3){height:65%; animation-delay:.3s;}
   .eq span:nth-child(4){height:85%; animation-delay:.45s;}
   .eq.paused span{animation-play-state:paused; opacity:.35;}
   @keyframes bounce{0%,100%{transform:scaleY(.4);} 50%{transform:scaleY(1);}}
-
   .np-text{flex:1; min-width:0;}
   .np-text .title{font-weight:600; font-size:14.5px; line-height:1.3; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
   .np-text .artist{color:var(--muted); font-size:12.5px; margin-top:2px;}
-
   .controls{display:flex; gap:8px; margin-bottom:4px;}
   .controls button{flex:1; padding:12px 8px; font-size:13px;}
 
   .queue-list{list-style:none; max-height:340px; overflow-y:auto;}
-  .queue-list li{
-    display:flex; justify-content:space-between; align-items:center;
-    padding:10px 0; border-bottom:1px solid var(--line);
-    font-size:13.5px; gap:10px;
-  }
+  .queue-list li{display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid var(--line); font-size:13.5px; gap:10px;}
   .queue-list li:last-child{border-bottom:none;}
   .queue-list .q-left{min-width:0; flex:1; cursor:pointer;}
   .queue-list .q-left .t{overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
   .queue-list .q-meta{color:var(--muted); font-size:11.5px; margin-top:2px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
-  .queue-list .q-right{display:flex; align-items:center; gap:8px; flex:none;}
-  .tag{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:10px;
-    color:var(--violet);
-    border:1px solid rgba(124,92,255,.35);
-    padding:2px 6px;
-    border-radius:5px;
-    white-space:nowrap;
-  }
-  .heart-btn{
-    background:none; border:none; color:var(--muted); font-size:16px; padding:2px 4px; cursor:pointer;
-  }
+  .queue-list .q-right{display:flex; align-items:center; gap:6px; flex:none;}
+  .tag{font-family:'IBM Plex Mono', monospace; font-size:10px; color:var(--violet); border:1px solid rgba(124,92,255,.35); padding:2px 6px; border-radius:5px; white-space:nowrap;}
+  .heart-btn, .play-icon-btn{background:none; border:none; color:var(--muted); font-size:16px; padding:2px 4px; cursor:pointer;}
   .heart-btn.on{color:var(--rose);}
+  .play-icon-btn{color:var(--violet);}
   .empty-note{color:var(--muted); font-size:12.5px; font-style:italic;}
 
-  .status{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:11.5px;
-    color:var(--muted);
-    min-height:16px;
-    margin-top:4px;
-  }
+  .status{font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--muted); min-height:16px; margin-top:4px;}
   .status.err{color:#FF8A8A;}
   .status.ok{color:#8FE3A6;}
-
   details summary{cursor:pointer; color:var(--muted); font-size:12.5px; margin-bottom:4px;}
   details[open] summary{margin-bottom:12px;}
+
+  .genre-grid{display:flex; flex-wrap:wrap; gap:8px;}
+  .genre-btn{background:var(--ink-2); border:1px solid var(--line); color:var(--text); padding:9px 14px; border-radius:20px; font-size:13px; font-family:'Inter',sans-serif; font-weight:500; cursor:pointer;}
+  .genre-btn:hover{border-color:var(--violet);}
+
+  .flow-sub-heading{font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:13px; color:var(--amber); margin:14px 0 12px;}
+  .flow-sub-heading:first-child{margin-top:0;}
+  .flow-list{position:relative; padding-left:2px;}
+  .flow-step{position:relative; padding-left:34px; padding-bottom:16px;}
+  .flow-step:last-child{padding-bottom:0;}
+  .flow-step::before{content:''; position:absolute; left:12px; top:26px; bottom:-2px; width:2px; background:var(--line);}
+  .flow-step:last-child::before{display:none;}
+  .flow-num{position:absolute; left:0; top:0; width:26px; height:26px; border-radius:50%; background:var(--violet); color:#fff; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:12px; display:flex; align-items:center; justify-content:center; z-index:1;}
+  .flow-title{font-weight:600; font-size:13.5px; margin-bottom:2px;}
+  .flow-desc{color:var(--muted); font-size:12.5px; line-height:1.45;}
+  .flow-desc a{color:var(--violet);}
+
+  .fav-header-row{display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;}
+  .fav-header-row h2{margin-bottom:0;}
 
   @media (max-width:380px){
     h1{font-size:24px;}
@@ -235,7 +125,7 @@
 
   <div class="eyebrow">İndirmesiz &middot; Yalnızca Akış</div>
   <h1>Akış</h1>
-  <div class="sub">Bir şarkıyla başla, bittiğinde benzer bir tanesi otomatik gelsin.</div>
+  <div class="sub">Bir şarkıyla ya da bir türle başla, bittiğinde benzer bir tanesi otomatik gelsin.</div>
 
   <!-- API AYARLARI -->
   <div class="card">
@@ -250,21 +140,51 @@
     </details>
   </div>
 
+  <!-- API ANAHTARI NASIL ALINIR — AKIŞ DİYAGRAMI -->
+  <div class="card">
+    <details id="guide-details">
+      <summary>🔑 Bu iki anahtarı nereden, nasıl alırım?</summary>
+
+      <div class="flow-sub-heading">YouTube Data API v3 (ücretsiz)</div>
+      <div class="flow-list">
+        <div class="flow-step"><div class="flow-num">1</div><div class="flow-title">Google Cloud Console'a git</div><div class="flow-desc">console.cloud.google.com — normal Google hesabınla giriş yap, kredi kartı gerekmiyor.</div></div>
+        <div class="flow-step"><div class="flow-num">2</div><div class="flow-title">Yeni proje oluştur</div><div class="flow-desc">Üstteki proje seçiciden "New Project", istediğin bir isim ver.</div></div>
+        <div class="flow-step"><div class="flow-num">3</div><div class="flow-title">API'yi etkinleştir</div><div class="flow-desc">"APIs & Services → Library"da "YouTube Data API v3" ara, aç, "Enable" de.</div></div>
+        <div class="flow-step"><div class="flow-num">4</div><div class="flow-title">Anahtar oluştur</div><div class="flow-desc">"APIs & Services → Credentials → Create Credentials → API key". Anahtar anında oluşur.</div></div>
+        <div class="flow-step"><div class="flow-num">5</div><div class="flow-title">Kopyala, buraya yapıştır</div><div class="flow-desc">Yukarıdaki "API anahtarları" bölümündeki ilk kutuya yapıştırıp kaydet.</div></div>
+      </div>
+
+      <div class="flow-sub-heading">Last.fm API (ücretsiz)</div>
+      <div class="flow-list">
+        <div class="flow-step"><div class="flow-num">1</div><div class="flow-title">Başvuru sayfasına git</div><div class="flow-desc">last.fm/api/account/create — Last.fm hesabın yoksa önce ücretsiz oluştur.</div></div>
+        <div class="flow-step"><div class="flow-num">2</div><div class="flow-title">Kısa bir form doldur</div><div class="flow-desc">E-posta ve uygulama adı yeterli, açıklama kutusuna bir iki kelime yaz.</div></div>
+        <div class="flow-step"><div class="flow-num">3</div><div class="flow-title">Anahtar anında çıkar</div><div class="flow-desc">Gösterilen "API key"i kopyala, yukarıdaki ikinci kutuya yapıştır ve kaydet.</div></div>
+      </div>
+    </details>
+  </div>
+
   <!-- BAŞLANGIÇ ŞARKISI -->
   <div class="card">
     <h2>Radyoyu başlat</h2>
     <div class="row">
       <div>
         <label for="seed-artist">Sanatçı</label>
-        <input type="text" id="seed-artist" placeholder="örn. Sezen Aksu">
+        <input type="text" id="seed-artist" placeholder="örn. Tame Impala">
       </div>
       <div>
         <label for="seed-track">Şarkı</label>
-        <input type="text" id="seed-track" placeholder="örn. Kaç Yıl Geçti">
+        <input type="text" id="seed-track" placeholder="örn. Loser">
       </div>
     </div>
     <button class="btn-primary" id="start-btn">Radyoyu Başlat</button>
     <div class="status" id="start-status"></div>
+  </div>
+
+  <!-- TÜRE GÖRE BAŞLAT -->
+  <div class="card">
+    <h2>…veya türe göre başlat</h2>
+    <div class="genre-grid" id="genre-grid"></div>
+    <div class="status" id="genre-status"></div>
   </div>
 
   <!-- PLAYER -->
@@ -294,7 +214,10 @@
 
   <!-- FAVORİLER -->
   <div class="card" id="favorites-card" style="display:none;">
-    <h2>En sevdiklerim</h2>
+    <div class="fav-header-row">
+      <h2 style="margin-bottom:0;">En sevdiklerim</h2>
+      <button class="btn-ghost btn-sm" id="fav-shuffle-btn">🔀 Karışık Çal</button>
+    </div>
     <ul class="queue-list" id="favorites-list"></ul>
     <div class="empty-note" id="favorites-empty">Henüz favori eklemedin — çalan şarkının yanındaki ♥ ikonuna bas.</div>
   </div>
@@ -309,9 +232,7 @@
 
 <script>
 /* =====================================================================
-   AYARLAR
-   YouTube Data API v3 ve Last.fm anahtarların bu tarayıcıda (localStorage)
-   saklanır — yalnızca bu cihazda kalır, hiçbir sunucuya gönderilmez.
+   Anahtarlar bu tarayıcının localStorage'ında saklanır, sunucuya gitmez.
    ===================================================================== */
 
 const MAX_HISTORY = 50;
@@ -319,133 +240,135 @@ const LS_YT_KEY = 'akis_yt_key';
 const LS_LFM_KEY = 'akis_lfm_key';
 const LS_FAVORITES = 'akis_favorites';
 
-let YT_KEY = "";
-let LFM_KEY = "";
-let player = null;
-let playerReady = false;
-let pendingVideoId = null;
+const GENRES = [
+  {label:'Rock', tag:'rock'},
+  {label:'Pop', tag:'pop'},
+  {label:'Hip-Hop', tag:'hip-hop'},
+  {label:'Elektronik', tag:'electronic'},
+  {label:'Caz', tag:'jazz'},
+  {label:'Metal', tag:'metal'},
+  {label:'Klasik', tag:'classical'},
+  {label:'Türkçe Pop', tag:'turkish pop'}
+];
 
-let historyStack = [];   // {artist, track, videoId} — eski → yeni
+let YT_KEY = "", LFM_KEY = "";
+let player = null, playerReady = false, pendingVideoId = null;
+
+let historyStack = [];   // {artist, track, videoId}
 let currentIndex = -1;
-let favorites = [];      // {artist, track, videoId}
+let favorites = [];
 let isPaused = false;
+
+let nextCandidate = null;   // önceden hazırlanmış bir sonraki şarkı
+let prefetchForIndex = -1;
+let prefetchInFlight = false;
+
+let shuffleMode = false;
+let shuffleQueue = [];
 
 const el = (id) => document.getElementById(id);
 
-function safeLSGet(key){
-  try{ return localStorage.getItem(key); }catch(e){ return null; }
-}
-function safeLSSet(key, val){
-  try{ localStorage.setItem(key, val); return true; }catch(e){ return false; }
-}
+function safeLSGet(key){ try{ return localStorage.getItem(key); }catch(e){ return null; } }
+function safeLSSet(key, val){ try{ localStorage.setItem(key, val); return true; }catch(e){ return false; } }
 
-// ---- Kayıtlı anahtarları ve favorileri yükle ----
+// ---- Kayıtlı anahtar/favori yükle ----
 (function loadSaved(){
   const savedYt = safeLSGet(LS_YT_KEY);
   const savedLfm = safeLSGet(LS_LFM_KEY);
   if(savedYt){ YT_KEY = savedYt; el('yt-key').value = savedYt; }
   if(savedLfm){ LFM_KEY = savedLfm; el('lfm-key').value = savedLfm; }
   if(savedYt && savedLfm){
-    el('cfg-status').textContent = "Kayıtlı anahtarlar yüklendi.";
-    el('cfg-status').classList.add('ok');
+    setStatus('cfg-status', "Kayıtlı anahtarlar yüklendi.", 'ok');
   } else {
     el('cfg-details').setAttribute('open', '');
   }
   const savedFav = safeLSGet(LS_FAVORITES);
-  if(savedFav){
-    try{ favorites = JSON.parse(savedFav); }catch(e){ favorites = []; }
-  }
+  if(savedFav){ try{ favorites = JSON.parse(savedFav); }catch(e){ favorites = []; } }
   renderFavorites();
 })();
 
 el('save-keys').addEventListener('click', () => {
   YT_KEY = el('yt-key').value.trim();
   LFM_KEY = el('lfm-key').value.trim();
-  if(!YT_KEY || !LFM_KEY){
-    setStatus('cfg-status', "İki anahtar da gerekli.", 'err');
-    return;
-  }
+  if(!YT_KEY || !LFM_KEY){ setStatus('cfg-status', "İki anahtar da gerekli.", 'err'); return; }
   safeLSSet(LS_YT_KEY, YT_KEY);
   safeLSSet(LS_LFM_KEY, LFM_KEY);
   setStatus('cfg-status', "Kaydedildi — bir daha girmene gerek yok.", 'ok');
   el('cfg-details').removeAttribute('open');
 });
 
-// ---- YouTube IFrame API yükleme ----
-const tag = document.createElement('script');
-tag.src = "https://www.youtube.com/iframe_api";
-document.head.appendChild(tag);
+// ---- Tür butonlarını oluştur ----
+(function renderGenres(){
+  const grid = el('genre-grid');
+  GENRES.forEach(g => {
+    const btn = document.createElement('button');
+    btn.className = 'genre-btn';
+    btn.textContent = g.label;
+    btn.addEventListener('click', () => startGenreRadio(g.tag, g.label));
+    grid.appendChild(btn);
+  });
+})();
+
+// ---- YouTube IFrame API ----
+const tag_ = document.createElement('script');
+tag_.src = "https://www.youtube.com/iframe_api";
+document.head.appendChild(tag_);
 
 function onYouTubeIframeAPIReady(){
   player = new YT.Player('yt-player', {
     height: '100%', width: '100%',
     playerVars: { rel: 0, playsinline: 1 },
     events: {
-      'onReady': () => {
-        playerReady = true;
-        if(pendingVideoId){ player.loadVideoById(pendingVideoId); pendingVideoId = null; }
-      },
+      'onReady': () => { playerReady = true; if(pendingVideoId){ player.loadVideoById(pendingVideoId); pendingVideoId = null; } },
       'onStateChange': onPlayerStateChange
     }
   });
 }
 
 function onPlayerStateChange(e){
-  if(e.data === YT.PlayerState.ENDED){
-    goForward();
-  }
-  if(e.data === YT.PlayerState.PLAYING || e.data === YT.PlayerState.BUFFERING){
-    hideTapOverlay();
-  }
-  if(e.data === YT.PlayerState.PLAYING){
-    isPaused = false;
-    el('eq').classList.remove('paused');
-    el('pause-btn').textContent = "Duraklat";
-  }
-  if(e.data === YT.PlayerState.PAUSED){
-    isPaused = true;
-    el('eq').classList.add('paused');
-    el('pause-btn').textContent = "Devam Et";
-  }
+  if(e.data === YT.PlayerState.ENDED){ goForward(); }
+  if(e.data === YT.PlayerState.PLAYING || e.data === YT.PlayerState.BUFFERING){ hideTapOverlay(); }
+  if(e.data === YT.PlayerState.PLAYING){ isPaused = false; el('eq').classList.remove('paused'); el('pause-btn').textContent = "Duraklat"; }
+  if(e.data === YT.PlayerState.PAUSED){ isPaused = true; el('eq').classList.add('paused'); el('pause-btn').textContent = "Devam Et"; }
 }
 
 function showTapOverlay(){ el('tap-overlay').classList.add('show'); }
 function hideTapOverlay(){ el('tap-overlay').classList.remove('show'); }
-
-el('tap-overlay').addEventListener('click', () => {
-  if(player && playerReady){ player.playVideo(); }
-  hideTapOverlay();
-});
+el('tap-overlay').addEventListener('click', () => { if(player && playerReady){ player.playVideo(); } hideTapOverlay(); });
 
 // ---- YouTube arama ----
 async function searchYouTube(query){
   const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&videoCategoryId=10&maxResults=1&q=${encodeURIComponent(query)}&key=${YT_KEY}`;
   const res = await fetch(url);
-  if(!res.ok){
-    const body = await res.json().catch(()=>({}));
-    throw new Error(body?.error?.message || `YouTube arama hatası (${res.status})`);
-  }
+  if(!res.ok){ const body = await res.json().catch(()=>({})); throw new Error(body?.error?.message || `YouTube arama hatası (${res.status})`); }
   const data = await res.json();
   if(!data.items || data.items.length === 0) throw new Error("Video bulunamadı.");
   const item = data.items[0];
   return { videoId: item.id.videoId, title: item.snippet.title, channel: item.snippet.channelTitle };
 }
 
-// ---- Last.fm: benzer şarkı öner ----
+// ---- Ağırlıklı rastgele seçim (Last.fm eşleşme skoruna göre) ----
+function weightedPick(items, weightFn){
+  const weights = items.map(it => Math.max(weightFn(it), 0.0001));
+  const total = weights.reduce((a,b)=>a+b,0);
+  let r = Math.random()*total;
+  for(let i=0;i<items.length;i++){ r -= weights[i]; if(r<=0) return items[i]; }
+  return items[items.length-1];
+}
+
+// ---- Last.fm: benzer şarkı öner (eşleşme skoruna göre ağırlıklı) ----
 async function getSimilarTrack(artist, track, excludeList){
-  const url = `https://ws.audioscrobbler.com/2.0/?method=track.getsimilar&artist=${encodeURIComponent(artist)}&track=${encodeURIComponent(track)}&api_key=${LFM_KEY}&format=json&limit=15`;
+  const url = `https://ws.audioscrobbler.com/2.0/?method=track.getsimilar&artist=${encodeURIComponent(artist)}&track=${encodeURIComponent(track)}&api_key=${LFM_KEY}&format=json&limit=20`;
   const res = await fetch(url);
   if(!res.ok) throw new Error(`Last.fm hatası (${res.status})`);
   const data = await res.json();
   const matches = data?.similartracks?.track || [];
-  if(matches.length === 0){
-    return await getArtistFallback(artist, excludeList);
-  }
+  if(matches.length === 0){ return await getArtistFallback(artist, excludeList); }
   const candidates = matches.filter(m =>
     !excludeList.some(h => h.track.toLowerCase() === m.name.toLowerCase() && h.artist.toLowerCase() === m.artist.name.toLowerCase())
   );
-  const pool = candidates.length > 0 ? candidates : matches;
-  const pick = pool[Math.floor(Math.random() * Math.min(pool.length, 8))];
+  const pool = (candidates.length > 0 ? candidates : matches).slice(0, 12);
+  const pick = weightedPick(pool, m => parseFloat(m.match) || 0.05);
   return { artist: pick.artist.name, track: pick.name };
 }
 
@@ -461,18 +384,38 @@ async function getArtistFallback(artist, excludeList){
   return { artist: artist, track: pick.name };
 }
 
-// ---- Akışı başlat ----
-el('start-btn').addEventListener('click', async () => {
-  if(!YT_KEY || !LFM_KEY){
-    setStatus('start-status', "Önce yukarıdan API anahtarlarını gir ve kaydet.", 'err');
-    return;
+// ---- Türe göre başlat ----
+async function startGenreRadio(tag, label){
+  if(!YT_KEY || !LFM_KEY){ setStatus('genre-status', "Önce API anahtarlarını gir ve kaydet.", 'err'); return; }
+  exitShuffleMode();
+  setStatus('genre-status', `${label} için aranıyor…`, '');
+  try{
+    const url = `https://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&tag=${encodeURIComponent(tag)}&api_key=${LFM_KEY}&format=json&limit=30`;
+    const res = await fetch(url);
+    if(!res.ok) throw new Error(`Last.fm hatası (${res.status})`);
+    const data = await res.json();
+    const tracks = data?.tracks?.track || [];
+    if(tracks.length === 0) throw new Error("Bu tür için şarkı bulunamadı.");
+    const pick = tracks[Math.floor(Math.random() * Math.min(tracks.length, 20))];
+    const artistName = pick.artist?.name || pick.artist;
+    const trackName = pick.name;
+    const yt = await searchYouTube(`${artistName} - ${trackName}`);
+    pushToHistory({ artist: artistName, track: trackName, videoId: yt.videoId });
+    playCurrent();
+    setStatus('genre-status', "");
+    showMainCards();
+  }catch(err){
+    setStatus('genre-status', err.message, 'err');
   }
+}
+
+// ---- Radyoyu başlat (sanatçı/şarkı) ----
+el('start-btn').addEventListener('click', async () => {
+  if(!YT_KEY || !LFM_KEY){ setStatus('start-status', "Önce yukarıdan API anahtarlarını gir ve kaydet.", 'err'); return; }
   const artist = el('seed-artist').value.trim();
   const track = el('seed-track').value.trim();
-  if(!artist || !track){
-    setStatus('start-status', "Sanatçı ve şarkı adı gerekli.", 'err');
-    return;
-  }
+  if(!artist || !track){ setStatus('start-status', "Sanatçı ve şarkı adı gerekli.", 'err'); return; }
+  exitShuffleMode();
   el('start-btn').disabled = true;
   setStatus('start-status', "Aranıyor…", '');
   try{
@@ -480,9 +423,7 @@ el('start-btn').addEventListener('click', async () => {
     pushToHistory({ artist, track, videoId: result.videoId });
     playCurrent();
     setStatus('start-status', "");
-    el('player-card').style.display = 'block';
-    el('favorites-card').style.display = 'block';
-    el('history-card').style.display = 'block';
+    showMainCards();
   }catch(err){
     setStatus('start-status', err.message, 'err');
   }finally{
@@ -490,42 +431,86 @@ el('start-btn').addEventListener('click', async () => {
   }
 });
 
+function showMainCards(){
+  el('player-card').style.display = 'block';
+  el('favorites-card').style.display = 'block';
+  el('history-card').style.display = 'block';
+}
+
 // ---- Geçmiş yönetimi ----
 function pushToHistory(entry){
   historyStack.push(entry);
   currentIndex = historyStack.length - 1;
-  if(historyStack.length > MAX_HISTORY){
-    historyStack.shift();
-    currentIndex--;
-  }
+  if(historyStack.length > MAX_HISTORY){ historyStack.shift(); currentIndex--; }
 }
 
 function playCurrent(){
   const entry = historyStack[currentIndex];
   if(!entry) return;
   showTapOverlay();
-  if(playerReady){ player.loadVideoById(entry.videoId); }
-  else { pendingVideoId = entry.videoId; }
+  if(playerReady){ player.loadVideoById(entry.videoId); } else { pendingVideoId = entry.videoId; }
   el('np-title').textContent = entry.track;
   el('np-artist').textContent = entry.artist;
   updateFavToggle(entry);
   renderHistory();
+
+  // Sondaysak ve karışık modda değilsek, bir sonraki şarkıyı arka planda hazırla.
+  if(currentIndex === historyStack.length - 1 && !shuffleMode){
+    nextCandidate = null;
+    prefetchNext();
+  }
 }
 
-// ---- İleri git: kuyrukta varsa oradan oynat, yoksa yeni öneri getir ----
+// ---- Bir sonraki şarkıyı arka planda önceden hazırla (geçişi hızlandırır) ----
+async function prefetchNext(){
+  if(prefetchInFlight || shuffleMode) return;
+  const seedIndex = currentIndex;
+  const last = historyStack[seedIndex];
+  if(!last) return;
+  prefetchInFlight = true;
+  try{
+    const similar = await getSimilarTrack(last.artist, last.track, historyStack.slice(-20));
+    const yt = await searchYouTube(`${similar.artist} - ${similar.track}`);
+    if(currentIndex === seedIndex && historyStack.length - 1 === seedIndex){
+      nextCandidate = { artist: similar.artist, track: similar.track, videoId: yt.videoId };
+      prefetchForIndex = seedIndex;
+    }
+  }catch(e){ /* sessizce geç, goForward gerekirse kendi arar */ }
+  finally{ prefetchInFlight = false; }
+}
+
+// ---- İleri git ----
 async function goForward(){
+  if(shuffleMode){
+    if(shuffleQueue.length === 0){ shuffleQueue = shuffleArray(favorites); }
+    const next = shuffleQueue.shift();
+    if(!next){ return; }
+    pushToHistory(next);
+    playCurrent();
+    return;
+  }
+
   if(currentIndex < historyStack.length - 1){
     currentIndex++;
     playCurrent();
     return;
   }
+
+  if(nextCandidate && prefetchForIndex === currentIndex){
+    const cand = nextCandidate;
+    nextCandidate = null;
+    pushToHistory(cand);
+    playCurrent();
+    return;
+  }
+
   const last = historyStack[currentIndex];
   if(!last) return;
   setStatus('player-status', "Sıradaki şarkı aranıyor…", '');
   try{
     const similar = await getSimilarTrack(last.artist, last.track, historyStack.slice(-20));
-    const ytResult = await searchYouTube(`${similar.artist} - ${similar.track}`);
-    pushToHistory({ artist: similar.artist, track: similar.track, videoId: ytResult.videoId });
+    const yt = await searchYouTube(`${similar.artist} - ${similar.track}`);
+    pushToHistory({ artist: similar.artist, track: similar.track, videoId: yt.videoId });
     playCurrent();
     setStatus('player-status', "");
   }catch(err){
@@ -541,42 +526,37 @@ function goBack(){
 
 el('skip-btn').addEventListener('click', goForward);
 el('prev-btn').addEventListener('click', goBack);
-
-el('pause-btn').addEventListener('click', () => {
-  if(!playerReady) return;
-  if(isPaused) player.playVideo(); else player.pauseVideo();
-});
+el('pause-btn').addEventListener('click', () => { if(!playerReady) return; if(isPaused) player.playVideo(); else player.pauseVideo(); });
 
 // ---- Favoriler ----
 function isFavorite(entry){
   return favorites.some(f => f.artist.toLowerCase() === entry.artist.toLowerCase() && f.track.toLowerCase() === entry.track.toLowerCase());
 }
-
-function updateFavToggle(entry){
-  const btn = el('fav-toggle-btn');
-  btn.classList.toggle('fav-on', isFavorite(entry));
-}
+function updateFavToggle(entry){ el('fav-toggle-btn').classList.toggle('fav-on', isFavorite(entry)); }
 
 el('fav-toggle-btn').addEventListener('click', () => {
   const entry = historyStack[currentIndex];
   if(!entry) return;
+  toggleFavorite(entry);
+});
+
+function toggleFavorite(entry){
   if(isFavorite(entry)){
     favorites = favorites.filter(f => !(f.artist.toLowerCase() === entry.artist.toLowerCase() && f.track.toLowerCase() === entry.track.toLowerCase()));
   } else {
     favorites.push({ artist: entry.artist, track: entry.track, videoId: entry.videoId });
   }
   safeLSSet(LS_FAVORITES, JSON.stringify(favorites));
-  updateFavToggle(entry);
+  if(historyStack[currentIndex]) updateFavToggle(historyStack[currentIndex]);
   renderFavorites();
   renderHistory();
-});
+}
 
 function playFavorite(fav){
+  exitShuffleMode();
   pushToHistory({ artist: fav.artist, track: fav.track, videoId: fav.videoId });
   playCurrent();
-  el('player-card').style.display = 'block';
-  el('favorites-card').style.display = 'block';
-  el('history-card').style.display = 'block';
+  showMainCards();
   window.scrollTo({top:0, behavior:'smooth'});
 }
 
@@ -588,11 +568,41 @@ function removeFavorite(fav){
   renderHistory();
 }
 
+function shuffleArray(arr){
+  const a = arr.slice();
+  for(let i = a.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function exitShuffleMode(){ shuffleMode = false; shuffleQueue = []; updateShuffleBtn(); }
+
+function updateShuffleBtn(){
+  const btn = el('fav-shuffle-btn');
+  btn.textContent = shuffleMode ? "⏹ Karışık Çalmayı Durdur" : "🔀 Karışık Çal";
+  btn.classList.toggle('active', shuffleMode);
+}
+
+el('fav-shuffle-btn').addEventListener('click', () => {
+  if(shuffleMode){ exitShuffleMode(); return; }
+  if(favorites.length === 0) return;
+  shuffleMode = true;
+  shuffleQueue = shuffleArray(favorites);
+  const first = shuffleQueue.shift();
+  pushToHistory(first);
+  playCurrent();
+  showMainCards();
+  updateShuffleBtn();
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+
 function renderFavorites(){
   const list = el('favorites-list');
   const empty = el('favorites-empty');
   list.innerHTML = '';
-  if(favorites.length === 0){ empty.style.display = 'block'; return; }
+  if(favorites.length === 0){ empty.style.display = 'block'; updateShuffleBtn(); return; }
   empty.style.display = 'none';
   favorites.forEach((f) => {
     const li = document.createElement('li');
@@ -603,17 +613,25 @@ function renderFavorites(){
 
     const right = document.createElement('div');
     right.className = 'q-right';
+    const playBtn = document.createElement('button');
+    playBtn.className = 'play-icon-btn';
+    playBtn.textContent = '▶';
+    playBtn.title = 'Şimdi çal';
+    playBtn.addEventListener('click', (ev) => { ev.stopPropagation(); playFavorite(f); });
+
     const rm = document.createElement('button');
     rm.className = 'heart-btn on';
     rm.textContent = '♥';
     rm.title = 'Favorilerden çıkar';
     rm.addEventListener('click', (ev) => { ev.stopPropagation(); removeFavorite(f); });
-    right.appendChild(rm);
 
+    right.appendChild(playBtn);
+    right.appendChild(rm);
     li.appendChild(left);
     li.appendChild(right);
     list.appendChild(li);
   });
+  updateShuffleBtn();
 }
 
 function renderHistory(){
@@ -622,30 +640,24 @@ function renderHistory(){
   for(let i = historyStack.length - 1; i >= 0; i--){
     const h = historyStack[i];
     const li = document.createElement('li');
-
     const left = document.createElement('div');
     left.className = 'q-left';
     left.innerHTML = `<div class="t">${escapeHtml(h.track)}</div><div class="q-meta">${escapeHtml(h.artist)}</div>`;
-    left.addEventListener('click', () => { currentIndex = i; playCurrent(); });
+    left.addEventListener('click', () => { currentIndex = i; shuffleMode = false; updateShuffleBtn(); playCurrent(); });
 
     const right = document.createElement('div');
     right.className = 'q-right';
     const heart = document.createElement('button');
     heart.className = 'heart-btn' + (isFavorite(h) ? ' on' : '');
     heart.textContent = '♥';
-    heart.addEventListener('click', (ev) => {
-      ev.stopPropagation();
-      if(isFavorite(h)){ removeFavorite(h); }
-      else{ favorites.push({artist:h.artist, track:h.track, videoId:h.videoId}); safeLSSet(LS_FAVORITES, JSON.stringify(favorites)); renderFavorites(); heart.classList.add('on'); if(historyStack[currentIndex]) updateFavToggle(historyStack[currentIndex]); }
-    });
+    heart.addEventListener('click', (ev) => { ev.stopPropagation(); toggleFavorite(h); });
     right.appendChild(heart);
     if(i === currentIndex){
-      const tag = document.createElement('span');
-      tag.className = 'tag';
-      tag.textContent = 'ÇALIYOR';
-      right.appendChild(tag);
+      const tagEl = document.createElement('span');
+      tagEl.className = 'tag';
+      tagEl.textContent = 'ÇALIYOR';
+      right.appendChild(tagEl);
     }
-
     li.appendChild(left);
     li.appendChild(right);
     list.appendChild(li);
@@ -665,13 +677,8 @@ function escapeHtml(str){
   return d.innerHTML;
 }
 
-// ---- PWA: ana ekrana eklenebilir yapmak için service worker kaydı ----
 if('serviceWorker' in navigator){
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js').catch(() => {
-      // sessizce geç — service worker olmadan da uygulama normal çalışır
-    });
-  });
+  window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); });
 }
 </script>
 </body>
